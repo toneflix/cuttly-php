@@ -1,0 +1,43 @@
+{
+  "name": "toneflix-code/cuttly-php",
+  "description": "A PHP wrapper for Cutt.ly.",
+  "type": "library",
+  "require": {
+    "php": "^8.1|^8.2|^8.3",
+    "guzzlehttp/guzzle": "^7.9",
+    "symfony/http-client": "^7.1"
+  },
+  "require-dev": {
+    "pestphp/pest": "^2.35",
+    "symfony/var-dumper": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "ToneflixCode\\Cuttly\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ToneflixCode\\Cuttly\\Tests\\": "tests"
+    }
+  },
+  "authors": [
+    {
+      "name": "Legacy",
+      "email": "legacy@toneflix.com.ng",
+      "homepage": "https://legacy.toneflix.com.ng",
+      "role": "Developer"
+    }
+  ],
+  "scripts": {
+    "test": "pest"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "MIT",
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
