@@ -2,6 +2,24 @@
   "name": "toneflix-code/cuttly-php",
   "description": "A PHP wrapper for Cutt.ly.",
   "type": "library",
+  "homepage": "https://github.com/toneflix/cuttly-php",
+  "keywords": [
+    "api",
+    "toneflix-code",
+    "cuttly-php",
+    "cuttly-laravel",
+    "cuttly",
+    "links",
+    "link shortening"
+  ],
+  "authors": [
+    {
+      "name": "Legacy",
+      "email": "legacy@toneflix.com.ng",
+      "homepage": "https://legacy.toneflix.com.ng",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "php": "^8.1|^8.2|^8.3",
     "guzzlehttp/guzzle": "^7.9",
@@ -24,14 +42,6 @@
       "ToneflixCode\\CuttlyPhp\\Tests\\": "tests"
     }
   },
-  "authors": [
-    {
-      "name": "Legacy",
-      "email": "legacy@toneflix.com.ng",
-      "homepage": "https://legacy.toneflix.com.ng",
-      "role": "Developer"
-    }
-  ],
   "scripts": {
     "test": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
     "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
