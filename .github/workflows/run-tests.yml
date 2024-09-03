@@ -1,4 +1,4 @@
-name: Running Composer Tests
+name: Run Tests
 
 on:
   push:
@@ -39,6 +39,13 @@ jobs:
 
       - name: List Installed Dependencies
         run: composer show -D
+
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo CUTTLY_API_KEY=${{ secrets.CUTTLY_API_KEY }} >> .env
+          echo CUTTLY_TEAM_API_KEY=${{ secrets.CUTTLY_TEAM_API_KEY }} >> .env
+          cat .env
 
       - name: Execute tests
         run: ./vendor/bin/pest --coverage --ci
