@@ -10,16 +10,18 @@
   },
   "require-dev": {
     "pestphp/pest": "^2.35",
-    "symfony/var-dumper": "^7.1"
+    "symfony/var-dumper": "^7.1",
+    "imanghafoori/php-imports-analyzer": "^1.0",
+    "phpstan/phpstan": "^1.12"
   },
   "autoload": {
     "psr-4": {
-      "ToneflixCode\\Cuttly\\": "src/"
+      "ToneflixCode\\CuttlyPhp\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ToneflixCode\\Cuttly\\Tests\\": "tests"
+      "ToneflixCode\\CuttlyPhp\\Tests\\": "tests"
     }
   },
   "authors": [
@@ -31,7 +33,8 @@
     }
   ],
   "scripts": {
-    "test": "pest"
+    "test": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

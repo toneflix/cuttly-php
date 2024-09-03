@@ -1,11 +1,11 @@
 <?php
 
-namespace ToneflixCode\Cuttly\Exceptions;
+namespace ToneflixCode\CuttlyPhp\Exceptions;
 
-use ToneflixCode\Cuttly\Cuttly;
-use ToneflixCode\Cuttly\Enums\EditingStatus;
-use ToneflixCode\Cuttly\Enums\ShortnerStatus;
-use ToneflixCode\Cuttly\Enums\StatsStatus;
+use ToneflixCode\CuttlyPhp\Cuttly;
+use ToneflixCode\CuttlyPhp\Enums\EditingStatus;
+use ToneflixCode\CuttlyPhp\Enums\ShortnerStatus;
+use ToneflixCode\CuttlyPhp\Enums\StatsStatus;
 
 class Thrower
 {
@@ -75,11 +75,7 @@ class Thrower
 
             $case = $body->status ?? 0;
 
-            if ($case === 0) {
-                throw new FailedRequestException((string)$body, 400);
-            } else {
-                throw FailedRequestException::fromCase(StatsStatus::from($case));
-            }
+            throw FailedRequestException::fromCase(StatsStatus::from($case));
         } else {
             throw new FailedRequestException($body, 1);
         }

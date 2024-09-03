@@ -1,16 +1,15 @@
 <?php
 
-namespace ToneflixCode\Cuttly;
+namespace ToneflixCode\CuttlyPhp;
 
 use Dotenv\Dotenv;
 use Dotenv\Repository\RepositoryBuilder;
-use ToneflixCode\Cuttly\Apis\CuttlyRegular;
-use ToneflixCode\Cuttly\Apis\CuttlyTeam;
-use ToneflixCode\Cuttly\Exceptions\InvalidApiKeyException;
+use ToneflixCode\CuttlyPhp\Apis\CuttlyRegular;
+use ToneflixCode\CuttlyPhp\Apis\CuttlyTeam;
+use ToneflixCode\CuttlyPhp\Exceptions\InvalidApiKeyException;
 
 class Cuttly
 {
-    protected Router $router;
     protected string $baseUrl;
 
     public function __construct(
@@ -23,45 +22,73 @@ class Cuttly
         $this->apiKey ??= static::env('CUTTLY_API_KEY');
         $this->teamApiKey ??= static::env('CUTTLY_TEAM_API_KEY');
 
-        if (!$this->apiKey) {
-            throw new InvalidApiKeyException();
-        }
-
-        $this->router = new Router();
-
         return $this;
     }
 
     private static function env($key): ?string
     {
+
         $repository = RepositoryBuilder::createWithDefaultAdapters()->make();
 
-        $dotenv = Dotenv::create($repository, __DIR__ . '/../');
+        $dotenv = Dotenv::create($repository, static::getEnvPath());
 
         $env = $dotenv->safeLoad();
 
         return $env[$key] ?? null;
     }
 
+    /**
+     * Resolve the .env file
+     *
+     * @return string
+     */
+    private static function getEnvPath(): string
+    {
+        $reflector = new \ReflectionClass(static::class);
+
+        $envPath = explode('vendor/toneflix-code/cuttly-php/src/Cuttly', $reflector->getFileName());
+
+        if (!file_exists(realpath($envPath[0])) || !is_dir(realpath($envPath[0]))) {
+            $envPath = realpath(__DIR__ . '/../');
+        }
+
+        return $envPath;
+    }
+
+    /**
+     * Call the Regular API endpoint available only to all users 
+     * no matter the subscription plan
+     *
+     * @return CuttlyRegular
+     * @throws InvalidApiKeyException
+     */
     public function regular(): CuttlyRegular
     {
         $apiKey = $this->init()->apiKey;
 
-        $builder = new CuttlyRegular($apiKey);
-        return $builder;
+        if (!$this->apiKey) {
+            throw new InvalidApiKeyException();
+        }
+
+        return new CuttlyRegular($apiKey);
     }
 
     /**
-     * Call the team API endpoint available only to registered users with minimum Team subscription plan
+     * Call the Team API endpoint available only to registered 
+     * users with minimum Team subscription plan
      *
      * @return CuttlyTeam
+     * @throws InvalidApiKeyException
      */
     public function team(): CuttlyTeam
     {
         $apiKey = $this->init()->teamApiKey;
 
-        $builder = new CuttlyTeam($apiKey);
-        return $builder;
+        if (!$apiKey) {
+            throw new InvalidApiKeyException();
+        }
+
+        return new CuttlyTeam($apiKey);
     }
 
     /**

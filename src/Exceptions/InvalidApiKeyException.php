@@ -1,8 +1,8 @@
 <?php
 
-namespace ToneflixCode\Cuttly\Exceptions;
+namespace ToneflixCode\CuttlyPhp\Exceptions;
 
-class InvalidApiKeyException extends \Exception
+final class InvalidApiKeyException extends \Exception
 {
     /**
      * Create a new invalid api key exception.

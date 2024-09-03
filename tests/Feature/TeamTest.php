@@ -1,12 +1,12 @@
 <?php
 
-use ToneflixCode\Cuttly\Cuttly;
+use ToneflixCode\CuttlyPhp\Cuttly;
 
 beforeEach(function () {
     $this->link = 'https://facebook.com/marxemi';
 }); //->skip('All tests in this file are temporarily disabled but they work');
 
-test('can generate link', function () {
+test('can shorten link', function () {
     $cutly = new Cuttly();
     $create = $cutly->team()->noTitle()->public()->name('john' . rand())->shorten($this->link);
     $cutly->team()->delete($create->shortLink);

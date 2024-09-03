@@ -1,6 +1,6 @@
 <?php
 
-namespace ToneflixCode\Cuttly\Enums;
+namespace ToneflixCode\CuttlyPhp\Enums;
 
 enum StatsStatus: int
 {

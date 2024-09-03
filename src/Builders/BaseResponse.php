@@ -1,6 +1,6 @@
 <?php
 
-namespace ToneflixCode\Cuttly\Builders;
+namespace ToneflixCode\CuttlyPhp\Builders;
 
 use stdClass;
 

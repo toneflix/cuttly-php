@@ -1,12 +1,12 @@
 <?php
 
-namespace ToneflixCode\Cuttly\Exceptions;
+namespace ToneflixCode\CuttlyPhp\Exceptions;
 
-use ToneflixCode\Cuttly\Enums\EditingStatus;
-use ToneflixCode\Cuttly\Enums\ShortnerStatus;
-use ToneflixCode\Cuttly\Enums\StatsStatus;
+use ToneflixCode\CuttlyPhp\Enums\EditingStatus;
+use ToneflixCode\CuttlyPhp\Enums\ShortnerStatus;
+use ToneflixCode\CuttlyPhp\Enums\StatsStatus;
 
-class FailedRequestException extends \Exception
+final class FailedRequestException extends \Exception
 {
     /**
      * Create a new failed request exception.

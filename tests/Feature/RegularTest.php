@@ -1,21 +1,22 @@
 <?php
 
-use ToneflixCode\Cuttly\Cuttly;
+use ToneflixCode\CuttlyPhp\Cuttly;
 
 beforeEach(function () {
     $this->link = 'https://facebook.com/marxemi';
-})->skip('All tests in this file are temporarily disabled but they work');
+}); //->skip('All tests in this file are temporarily disabled but they work');
 
-test('can load api key', function () {
-    $cutly = new Cuttly();
-    $cutly->init();
-
-    expect($cutly->apiKey)->toBeAlphaNumeric();
-});
-
-test('can generate link', function () {
+test('can shorten link', function () {
     $cutly = new Cuttly();
     $create = $cutly->regular()->noTitle()->public()->name('john' . rand())->shorten($this->link);
+    $cutly->regular()->delete($create->shortLink);
+
+    expect($create->fullLink)->toBe($this->link);
+}); //->skip('temporarily disabled but it works.');
+
+test('can shorten link with minimal params', function () {
+    $cutly = new Cuttly();
+    $create = $cutly->regular()->shorten($this->link);
     $cutly->regular()->delete($create->shortLink);
 
     expect($create->fullLink)->toBe($this->link);

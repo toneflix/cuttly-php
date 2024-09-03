@@ -1,12 +1,12 @@
 <?php
 
-namespace ToneflixCode\Cuttly\Apis;
+namespace ToneflixCode\CuttlyPhp\Apis;
 
-use ToneflixCode\Cuttly\Builders\BaseResponse;
-use ToneflixCode\Cuttly\Builders\ShortenResponse;
-use ToneflixCode\Cuttly\Builders\StatsResponse;
-use ToneflixCode\Cuttly\Cuttly;
-use ToneflixCode\Cuttly\Exceptions\Thrower;
+use ToneflixCode\CuttlyPhp\Builders\BaseResponse;
+use ToneflixCode\CuttlyPhp\Builders\ShortenResponse;
+use ToneflixCode\CuttlyPhp\Builders\StatsResponse;
+use ToneflixCode\CuttlyPhp\Cuttly;
+use ToneflixCode\CuttlyPhp\Exceptions\Thrower;
 
 class CuttlyTeam
 {
@@ -21,7 +21,7 @@ class CuttlyTeam
      * The query build for the reqeuest
      *
      * @var array{
-     *  action:'shorten'|'stats'|'edit',
+     *  action:string<shorten|stats|edit>,
      *  tag: string,
      *  name: string,
      *  title: string,
@@ -205,6 +205,7 @@ class CuttlyTeam
      * Finally make the request to cuttly
      *
      * @return ShortenResponse|BaseResponse|StatsResponse
+     * @throws \ToneflixCode\CuttlyPhp\Exceptions\FailedRequestException
      */
     public function send(): ShortenResponse|BaseResponse|StatsResponse
     {
