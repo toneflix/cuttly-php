@@ -9,7 +9,7 @@
 
 Cutt.ly is a Link Management Platform with all features you need in one place. Shorten your links, track clicks, and boost your brand with our all-in-one URL Shortener. Create custom short links, generate QR codes, build link-in-bio pages, and gather feedback with surveys. Start optimizing your URLs today and see the impact!y, this library aims to work around the Cutt.ly API implementation by providing a simple PHP wrapper arround it.
 
-Please refere to [Cutt.ly API Documentation](https://cutt.ly/cuttly-api) for detailed api use description.
+Please refere to [Cutt.ly API Documentation](https://cutt.ly/cuttly-api) for detailed api use description as this package tries to mirror the API in the best possible way.
 
 If you use Laravel you might also want to checkout [Cuttly Laravel](https://github.com/toneflix/cuttly-laravel)
 
