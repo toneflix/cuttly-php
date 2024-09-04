@@ -11,6 +11,8 @@ Cutt.ly is a Link Management Platform with all features you need in one place. S
 
 Please refere to [Cutt.ly API Documentation](https://cutt.ly/cuttly-api) for detailed api use description.
 
+If you use Laravel you might also want to checkout [Cuttly Laravel](https://github.com/toneflix/cuttly-laravel)
+
 ## Requirements
 
 - [PHP >= 8.1](http://php.net/)
