@@ -27,14 +27,15 @@ class Cuttly
 
     private static function env($key): ?string
     {
+        if (function_exists('env')) {
+            return env($key);
+        }
 
-        $repository = RepositoryBuilder::createWithDefaultAdapters()->make();
+        $repository = RepositoryBuilder::createWithDefaultAdapters()->immutable()->make();
 
-        $dotenv = Dotenv::create($repository, static::getEnvPath());
+        Dotenv::create($repository, static::getEnvPath())->safeLoad();
 
-        $env = $dotenv->safeLoad();
-
-        return $env[$key] ?? null;
+        return $_SERVER[$key] ?? null;
     }
 
     /**
