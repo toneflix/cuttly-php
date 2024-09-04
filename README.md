@@ -7,7 +7,7 @@
 [![PHP Version Require](https://img.shields.io/packagist/dependency-v/toneflix-code/cuttly-php/php)](https://packagist.org/packages/toneflix-code/cuttly-php)
 [![codecov](https://codecov.io/gh/toneflix/cuttly-php/graph/badge.svg?token=2O7aFulQ9P)](https://codecov.io/gh/toneflix/cuttly-php)
 
-Cutt.ly is a Link Management Platform with all features you need in one place. Shorten, brand, manage and track your links the easy way, this library aims to work around the Cutt.ly API implementation by providing a simple PHP wrapper arround it.
+Cutt.ly is a Link Management Platform with all features you need in one place. Shorten your links, track clicks, and boost your brand with our all-in-one URL Shortener. Create custom short links, generate QR codes, build link-in-bio pages, and gather feedback with surveys. Start optimizing your URLs today and see the impact!y, this library aims to work around the Cutt.ly API implementation by providing a simple PHP wrapper arround it.
 
 Please refere to [Cutt.ly API Documentation](https://cutt.ly/cuttly-api) for detailed api use description.
 
