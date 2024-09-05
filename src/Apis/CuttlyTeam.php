@@ -220,11 +220,7 @@ class CuttlyTeam
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $body = (string)$e->getResponse()->getBody();
 
-            return match (true) {
-                $this->query['action'] === 'edit' => Thrower::editing($body),
-                $this->query['action'] === 'stats' => Thrower::stats($body),
-                default => Thrower::shortener($body),
-            };
+            return $this->buildError($body);
         }
 
         $body = (string)$response->getBody();
@@ -233,6 +229,7 @@ class CuttlyTeam
             $data = json_decode($body);
 
             return match (true) {
+                is_string($data) => $this->buildError($body),
                 $this->query['action'] === 'edit' => new BaseResponse($data),
                 $this->query['action'] === 'stats' => new StatsResponse($data->stats),
                 default => new ShortenResponse($data),
@@ -241,5 +238,14 @@ class CuttlyTeam
 
         $blank = (object)["error" => "No Data Available"];
         return new BaseResponse($blank);
+    }
+
+    private function buildError(string $body)
+    {
+        return match (true) {
+            $this->query['action'] === 'edit' => Thrower::editing($body),
+            $this->query['action'] === 'stats' => Thrower::stats($body),
+            default => Thrower::shortener($body),
+        };
     }
 }

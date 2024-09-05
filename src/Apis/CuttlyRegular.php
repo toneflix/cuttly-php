@@ -206,11 +206,7 @@ class CuttlyRegular
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $body = (string)$e->getResponse()->getBody();
 
-            return match (true) {
-                isset($this->query['edit']) => Thrower::editing($body),
-                isset($this->query['stats']) => Thrower::stats($body),
-                default => Thrower::shortener($body),
-            };
+            return $this->buildError($body);
         }
 
         $body = (string)$response->getBody();
@@ -219,6 +215,7 @@ class CuttlyRegular
             $data = json_decode($body);
 
             return match (true) {
+                is_string($data) => $this->buildError($body),
                 isset($this->query['edit']) => new BaseResponse($data),
                 isset($this->query['stats']) => new StatsResponse($data->stats),
                 default => new ShortenResponse($data->url),
@@ -227,5 +224,14 @@ class CuttlyRegular
 
         $blank = (object)["error" => "No Data Available"];
         return new BaseResponse($blank);
+    }
+
+    private function buildError(string $body)
+    {
+        return match (true) {
+            isset($this->query['edit']) => Thrower::editing($body),
+            isset($this->query['stats']) => Thrower::stats($body),
+            default => Thrower::shortener($body),
+        };
     }
 }
