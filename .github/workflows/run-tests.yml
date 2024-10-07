@@ -55,7 +55,7 @@ jobs:
           CUTTLY_TEAM_API_KEY: ${{ secrets.CUTTLY_TEAM_API_KEY }}
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.5.0
+        uses: codecov/codecov-action@v4.6.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/logs/clover.xml
